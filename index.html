@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Mitología Marina</title>
+<link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+<!-- VIDEO DE FONDO -->
+<video autoplay muted loop id="videoFondo">
+    <source src="video.mp4" type="video/mp4">
+    Tu navegador no soporta video.
+</video>
+
+<header>
+    <h1>🌊 Mitología Marina</h1>
+    <p>Explora los misterios del océano</p>
+</header>
+
+<nav>
+    <a href="index.html">Principal</a>
+    <a href="secciones.html">Secciones</a>
+    <a href="cronicas.html">Crónicas</a>
+    <a href="curiosidades.html">Curiosidades</a>
+    <a href="contacto.html">Contacto</a>
+</nav>
+
+<!-- BOTON PARA CAMBIAR MODO -->
+<button onclick="cambiarTema()" class="boton">
+🌙 Cambiar modo
+</button>
+
+<section class="contenido">
+    <h2>Bienvenido</h2>
+    <p>Sumérgete en un mundo lleno de criaturas legendarias y misterios marinos.</p>
+    <img src="mitologia.jpg">
+</section>
+
+<footer>© 2026 Mitología Marina</footer>
+
+<!-- JAVA SCRIPT -->
+<script>
+
+// MENSAJE DE BIENVENIDA
+window.onload = function(){
+
+    alert("🌊 Bienvenido a Mitología Marina 🌊");
+
+}
+
+// CAMBIAR MODO OSCURO Y CLARO
+function cambiarTema(){
+
+    document.body.classList.toggle("oscuro");
+
+}
+
+</script>
+
+</body>
+</html>
