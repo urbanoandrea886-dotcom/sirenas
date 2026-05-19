@@ -69,7 +69,7 @@ footer{
 
 .imagen-seccion {
     width: 100%;
-    max-width: 600px; /* Evita que la imagen sea gigante en pantallas grandes */
+    max-width: 600px;
     height: auto;
     display: block;
     margin: 15px 0;
