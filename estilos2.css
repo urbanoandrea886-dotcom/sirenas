@@ -59,3 +59,19 @@ footer{
 .boton:hover{
     background:#00c3ff;
 }
+
+.tarjeta {
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #f4f9f9; /* Un fondo sutil */
+    border-radius: 8px;
+}
+
+.imagen-seccion {
+    width: 100%;
+    max-width: 600px; /* Evita que la imagen sea gigante en pantallas grandes */
+    height: auto;
+    display: block;
+    margin: 15px 0;
+    border-radius: 6px;
+}
