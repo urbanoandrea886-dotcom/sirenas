@@ -8,7 +8,6 @@
 
 <body>
 
-
 <video autoplay muted loop id="videoFondo">
     <source src="video.mp4" type="video/mp4">
     Tu navegador no soporta video.
@@ -27,10 +26,13 @@
     <a href="contacto.html">Contacto</a>
 </nav>
 
-
-<button onclick="cambiarTema()" class="boton">
-🌙 Cambiar modo
-</button>
+<!-- Contenedor del botón y el nuevo indicador de profundidad -->
+<div style="margin: 20px 0; text-align: center;">
+    <button onclick="cambiarTema()" class="boton">🌙 Cambiar modo</button>
+    <p style="margin-top: 10px; font-size: 0.9rem;">
+        Profundidad actual de exploración: <strong id="contador-metros">0</strong> metros bajo el mar.
+    </p>
+</div>
 
 <section class="contenido">
     <h2>Bienvenido</h2>
@@ -40,23 +42,8 @@
 
 <footer>© 2026 Mitología Marina</footer>
 
-<!-- JAVA SCRIPT -->
-<script>
-
-window.onload = function(){
-
-    alert("🌊 Bienvenido a Mitología Marina 🌊");
-
-}
-
-
-function cambiarTema(){
-
-    document.body.classList.toggle("oscuro");
-
-}
-
-</script>
+<!-- VINCULACIÓN DEL ARCHIVO JAVASCRIPT EXTERNO -->
+<script src="script.js"></script>
 
 </body>
 </html>
