@@ -46,14 +46,17 @@ footer{
     margin-top:20px;
 }
 
+/* BOTON ARREGLADO */
 .boton{
-    display:inline-block;
-    margin-top:20px;
+    display:block;
+    width:250px;
+    margin:20px auto;
     padding:12px 20px;
     background:#0099cc;
     color:white;
     text-decoration:none;
     border-radius:10px;
+    text-align:center;
 }
 
 .boton:hover{
@@ -63,7 +66,7 @@ footer{
 .tarjeta {
     margin-bottom: 30px;
     padding: 15px;
-    background-color: #f4f9f9; /* Un fondo sutil */
+    background-color: #f4f9f9;
     border-radius: 8px;
 }
 
@@ -72,6 +75,6 @@ footer{
     max-width: 600px;
     height: auto;
     display: block;
-    margin: 15px 0;
+    margin: 15px auto;
     border-radius: 6px;
 }
