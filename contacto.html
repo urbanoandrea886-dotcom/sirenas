@@ -14,17 +14,22 @@
 
 <section class="contenido">
 
-    <form>
+    <form action="https://formsubmit.co/urbanoandrea886@gmail.com" method="POST">
+
         <label>Nombre:</label><br>
-        <input type="text"><br><br>
+        <input type="text" name="nombre" required><br><br>
 
         <label>Correo:</label><br>
-        <input type="email"><br><br>
+        <input type="email" name="correo" required><br><br>
 
         <label>Mensaje:</label><br>
-        <textarea rows="5"></textarea><br><br>
+        <textarea name="mensaje" rows="5" required></textarea><br><br>
+
+        <!-- Evita captcha -->
+        <input type="hidden" name="_captcha" value="false">
 
         <button type="submit">Enviar</button>
+
     </form>
 
     <br>
