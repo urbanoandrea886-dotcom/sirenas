@@ -136,31 +136,3 @@ footer {
     font-size: 16px;
 }
 
-/* MODO CLARO */
-body.claro{
-    background: white;
-    color: black;
-}
-
-body.claro header{
-    background: rgba(255,255,255,0.8);
-    color: black;
-}
-
-body.claro nav{
-    background: rgba(240,240,240,0.8);
-}
-
-body.claro nav a{
-    color: black;
-}
-
-body.claro .contenido{
-    background: rgba(255,255,255,0.8);
-    color: black;
-}
-
-body.claro footer{
-    background: rgba(240,240,240,0.8);
-    color: black;
-}
