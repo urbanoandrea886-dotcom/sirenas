@@ -7,7 +7,7 @@ body {
     animation: fondoAnimado 10s ease infinite;
 }
 
-#videoFondo {
+
     position: fixed;
     top: 0;
     left: 0;
@@ -17,7 +17,6 @@ body {
     z-index: -2;
 }
 
-/* CAPA OSCURA ENCIMA DEL VIDEO (para que se vea el texto) */
 body::before {
     content: "";
     position: fixed;
@@ -29,21 +28,18 @@ body::before {
     z-index: -1;
 }
 
-/* FONDO ANIMADO */
 @keyframes fondoAnimado {
     0% {background-position: 0% 50%;}
     50% {background-position: 100% 50%;}
     100% {background-position: 0% 50%;}
 }
 
-/* HEADER */
 header {
     text-align: center;
     padding: 40px;
     background: rgba(0,0,50,0.6);
 }
 
-/* MENÚ */
 nav {
     display: flex;
     justify-content: center;
@@ -62,7 +58,7 @@ nav a:hover {
     transform: scale(1.1);
 }
 
-/* SECCIONES */
+/*SECCIONES */
 .contenido {
     padding: 50px;
     text-align: center;
@@ -127,4 +123,44 @@ footer {
     text-align: center;
     padding: 20px;
     background: rgba(0, 31, 63, 0.8);
+}
+/* BOTÓN */
+#modoBtn{
+    margin: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #001f3f;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* MODO CLARO */
+body.claro{
+    background: white;
+    color: black;
+}
+
+body.claro header{
+    background: rgba(255,255,255,0.8);
+    color: black;
+}
+
+body.claro nav{
+    background: rgba(240,240,240,0.8);
+}
+
+body.claro nav a{
+    color: black;
+}
+
+body.claro .contenido{
+    background: rgba(255,255,255,0.8);
+    color: black;
+}
+
+body.claro footer{
+    background: rgba(240,240,240,0.8);
+    color: black;
 }
