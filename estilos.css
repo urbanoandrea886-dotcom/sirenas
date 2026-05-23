@@ -138,4 +138,56 @@ footer {
     cursor: pointer;
     font-size: 16px;
 }
+/* BOTÓN */
+#modoBtn{
+    margin: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #001f3f;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
 
+/* MODO CLARO */
+body.claro{
+    color: black;
+}
+
+/* CAPA OSCURA DEL VIDEO */
+body.claro::before{
+    background: rgba(255,255,255,0.4);
+}
+
+/* HEADER */
+body.claro header{
+    background: rgba(255,255,255,0.7);
+    color: black;
+}
+
+/* NAV */
+body.claro nav{
+    background: rgba(255,255,255,0.7);
+}
+
+body.claro nav a{
+    color: black;
+}
+
+/* TARJETAS */
+body.claro .tarjeta{
+    background: rgba(255,255,255,0.7);
+    color: black;
+}
+
+/* CONTENIDO */
+body.claro .contenido{
+    color: black;
+}
+
+/* FOOTER */
+body.claro footer{
+    background: rgba(255,255,255,0.7);
+    color: black;
+}
