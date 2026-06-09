@@ -39,5 +39,62 @@
 
 <script src="script.js"></script>
 
+<!-- Enlace y lógica con Firebase para la página de Secciones -->
+<script type="module">
+  // 1. Importamos los módulos necesarios directamente desde el servidor de Google
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+  // 2. Tus credenciales oficiales de la consola de Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyBsGZM5R-xKeqrr6ELRhQAVJ2cdmAn3UdA",
+    authDomain: "mitologia-marina.firebaseapp.com",
+    projectId: "mitologia-marina",
+    storageBucket: "mitologia-marina.firebasestorage.app",
+    messagingSenderId: "11763136382",
+    appId: "1:11763136382:web:0f7d1464363d9c16d5652f",
+    measurementId: "G-7XWHHDPT3"
+  };
+
+  // 3. Inicializamos los servicios
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // 4. Función encargada de consultar la base de datos
+  async function cargarMitos() {
+    const hoy = new Date();
+    const mitosContenedor = document.getElementById("mitos-container");
+
+    // Consulta: Solo trae los mitos cuya fecha de publicación sea menor o igual a hoy
+    const q = query(collection(db, "mitos"), where("fecha_publicacion", "<=", hoy));
+
+    try {
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        const mito = doc.data();
+        
+        if(mitosContenedor) {
+            // Inyectamos una tarjeta con la estructura HTML y estilos básicos integrados
+            mitosContenedor.innerHTML += `
+              <div class="card-mito" style="border: 1px solid rgba(255,255,255,0.2); padding: 20px; margin: 20px 0; border-radius: 8px; background: rgba(0, 0, 0, 0.5); text-align: left; color: #fff;">
+                <h3 style="margin-top: 0; color: #4fc3f7; font-size: 22px;">${mito.titulo}</h3>
+                <p style="line-height: 1.6; font-size: 16px;">${mito.cuerpo_texto}</p>
+                <div style="display: flex; justify-content: space-between; font-size: 13px; color: #ccc; margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px;">
+                  <span>📁 Categoría: <strong>${mito.tema_nombre ? mito.tema_nombre : 'General'}</strong></span>
+                  <span>✍️ Autor: <strong>${mito.usuario_nombre ? mito.usuario_nombre : 'Anónimo'}</strong></span>
+                </div>
+              </div>
+            `;
+        }
+      });
+    } catch (error) {
+      console.error("Hubo un problema al conectar con Firestore:", error);
+    }
+  }
+
+  // Ejecutamos la función al cargar la página
+  cargarMitos();
+</script>
+
 </body>
 </html>
