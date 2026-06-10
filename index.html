@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mitología Marina</title>
 <link rel="stylesheet" href="estilos.css">
 </head>
@@ -26,15 +27,15 @@
     <a href="contacto.html">Contacto</a>
 </nav>
 
-
 <section class="contenido">
+
     <h2>Bienvenido</h2>
 
     <p>
         Sumérgete en un mundo lleno de criaturas legendarias y misterios marinos.
     </p>
 
-    <img src="mitologia.jpg">
+    <img src="mitologia.jpg" alt="Mitología Marina">
 
     <h2>Mitos disponibles</h2>
 
@@ -43,51 +44,71 @@
     </div>
 
 </section>
-<footer>© 2026 Mitología Marina</footer>
 
-    <button id="modoBtn">🌙 Modo Oscuro</button>
+<footer>
+    © 2026 Mitología Marina
+</footer>
 
-<script src="script.js"></script>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>Mitología Marina</title>
-<link rel="stylesheet" href="estilos.css">
-</head>
-
-<body>
-
-<video autoplay muted loop id="videoFondo">
-    <source src="video.mp4" type="video/mp4">
-    Tu navegador no soporta video.
-</video>
-
-<header>
-    <h1>🌊 Mitología Marina</h1>
-    <p>Explora los misterios del océano</p>
-</header>
-
-<nav>
-    <a href="index.html">Principal</a>
-    <a href="secciones.html">Secciones</a>
-    <a href="cronicas.html">Crónicas</a>
-    <a href="curiosidades.html">Curiosidades</a>
-    <a href="contacto.html">Contacto</a>
-</nav>
-
-
-<section class="contenido">
-    <h2>Bienvenido</h2>
-    <p>Sumérgete en un mundo lleno de criaturas legendarias y misterios marinos.</p>
-    <img src="mitologia.jpg">
-</section>
-
-<footer>© 2026 Mitología Marina</footer>
-
-    <button id="modoBtn">🌙 Modo Oscuro</button>
+<button id="modoBtn">🌙 Modo Oscuro</button>
 
 <script src="script.js"></script>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+
+import {
+    getFirestore,
+    collection,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBsGZM5R-xKeqrr6ELRhQAVJ2cdmAn3UdA",
+    authDomain: "mitologia-marina.firebaseapp.com",
+    projectId: "mitologia-marina",
+    storageBucket: "mitologia-marina.firebasestorage.app",
+    messagingSenderId: "11763136382",
+    appId: "1:11763136382:web:0f7d1464363d9c16d5652f"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function cargarMitos() {
+
+    const contenedor = document.getElementById("mitos-container");
+
+    try {
+
+        contenedor.innerHTML = "";
+
+        const querySnapshot = await getDocs(collection(db, "mitos"));
+
+        querySnapshot.forEach((doc) => {
+
+            const mito = doc.data();
+
+            contenedor.innerHTML += `
+                <div class="card-mito">
+                    <h3>${mito.Titulo}</h3>
+                    <p>${mito.cuerpo_texto}</p>
+                </div>
+            `;
+        });
+
+    } catch(error) {
+
+        console.error(error);
+
+        contenedor.innerHTML =
+        "<p>Error al cargar los mitos desde Firebase.</p>";
+    }
+}
+
+cargarMitos();
+
+</script>
 
 </body>
 </html>
