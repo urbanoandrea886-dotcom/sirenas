@@ -208,3 +208,18 @@ body.claro footer{
     line-height: 1.8;
     font-size: 18px;
 }
+
+.imagen-mito{
+    width: 100%;
+    max-width: 500px;
+    display: block;
+    margin: 20px auto;
+    border-radius: 15px;
+}
+
+.card-mito{
+    background: rgba(255,255,255,0.1);
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
