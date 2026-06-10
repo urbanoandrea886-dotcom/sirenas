@@ -1,45 +1,58 @@
-// Importar Firebase
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 
 import {
-  getFirestore,
-  collection,
-  getDocs
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+    getFirestore,
+    collection,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-// Configuración Firebase
 const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "mitologia-marina.firebaseapp.com",
-  projectId: "mitologia-marina",
-  storageBucket: "mitologia-marina.firebasestorage.app",
-  messagingSenderId: "11763136382",
-  appId: "1:11763136382:web:0f7d1464363d9c16d5652f"
+    apiKey: "AIzaSyBsGZM5R-xKeqrr6ELRhQAVJ2cdmAn3UdA",
+    authDomain: "mitologia-marina.firebaseapp.com",
+    projectId: "mitologia-marina",
+    storageBucket: "mitologia-marina.firebasestorage.app",
+    messagingSenderId: "11763136382",
+    appId: "1:11763136382:web:0f7d1464363d9c16d5652f"
 };
 
-// Inicializar
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Obtener mitos
 async function cargarMitos() {
 
-  const contenedor = document.getElementById("mitos");
+    const contenedor = document.getElementById("mitos-container");
 
-  const querySnapshot = await getDocs(collection(db, "mitos"));
+    if (!contenedor) return;
 
-  querySnapshot.forEach((doc) => {
+    try {
 
-    const datos = doc.data();
+        contenedor.innerHTML = "Cargando mitos...";
 
-    contenedor.innerHTML += `
-      <div class="mito">
-        <h2>${datos.Titulo}</h2>
-        <p>${datos.cuerpo_texto}</p>
-      </div>
-    `;
+        const querySnapshot = await getDocs(
+            collection(db, "mitos")
+        );
 
-  });
+        contenedor.innerHTML = "";
+
+        querySnapshot.forEach((doc) => {
+
+            const mito = doc.data();
+
+            contenedor.innerHTML += `
+                <div class="card-mito">
+                    <h3>${mito.Titulo || "Sin título"}</h3>
+                    <p>${mito.cuerpo_texto || ""}</p>
+                </div>
+            `;
+        });
+
+    } catch (error) {
+
+        console.error("Error Firebase:", error);
+
+        contenedor.innerHTML =
+            "<p>No se pudieron cargar los mitos.</p>";
+    }
 }
 
 cargarMitos();
