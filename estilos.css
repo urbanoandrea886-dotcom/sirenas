@@ -183,24 +183,28 @@ body.claro footer{
 }
 
 #mitos-container{
-    margin-top: 30px;
+    max-width: 900px;
+    margin: 30px auto;
 }
 
 .card-mito{
-    background: rgba(0,0,0,.65);
-    color: white;
-    padding: 20px;
-    margin: 20px 0;
+    background: rgba(255,255,255,0.1);
     border-radius: 15px;
-    text-align: left;
+    padding: 25px;
+    margin-bottom: 30px;
+    color: white;
+    text-align: justify;
     backdrop-filter: blur(5px);
 }
 
 .card-mito h3{
-    color: #4fc3f7;
-    margin-bottom: 10px;
+    text-align: center;
+    color: #7fdfff;
+    margin-bottom: 20px;
+    font-size: 32px;
 }
 
 .card-mito p{
-    line-height: 1.7;
+    line-height: 1.8;
+    font-size: 18px;
 }
