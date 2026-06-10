@@ -1,13 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-
-import {
-    getFirestore,
-    collection,
-    getDocs
-} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBsGZM5R-xKeqrr6ELRhQAVJ2cdmAn3UdA",
+    apiKey: "TU_API_KEY",
     authDomain: "mitologia-marina.firebaseapp.com",
     projectId: "mitologia-marina",
     storageBucket: "mitologia-marina.firebasestorage.app",
@@ -24,35 +19,21 @@ async function cargarMitos() {
 
     if (!contenedor) return;
 
-    try {
+    const querySnapshot = await getDocs(collection(db, "mitos"));
 
-        contenedor.innerHTML = "Cargando mitos...";
+    contenedor.innerHTML = "";
 
-        const querySnapshot = await getDocs(
-            collection(db, "mitos")
-        );
+    querySnapshot.forEach((doc) => {
 
-        contenedor.innerHTML = "";
+        const mito = doc.data();
 
-        querySnapshot.forEach((doc) => {
-
-            const mito = doc.data();
-
-            contenedor.innerHTML += `
-                <div class="card-mito">
-                    <h3>${mito.Titulo || "Sin título"}</h3>
-                    <p>${mito.cuerpo_texto || ""}</p>
-                </div>
-            `;
-        });
-
-    } catch (error) {
-
-        console.error("Error Firebase:", error);
-
-        contenedor.innerHTML =
-            "<p>No se pudieron cargar los mitos.</p>";
-    }
+        contenedor.innerHTML += `
+            <div class="card-mito">
+                <h3>${mito.Titulo}</h3>
+                <p>${mito.cuerpo_texto}</p>
+            </div>
+        `;
+    });
 }
 
 cargarMitos();
