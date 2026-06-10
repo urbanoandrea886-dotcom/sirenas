@@ -31,6 +31,7 @@ async function cargarMitos() {
             <div class="card-mito">
                 <h3>${mito.Titulo}</h3>
                 <p>${mito.cuerpo_texto}</p>
+                class="imagen-mito"
             </div>
         `;
     });
