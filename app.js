@@ -45,9 +45,9 @@ async function cargarMitos() {
 
                     <h3>${mito.Titulo || "Sin título"}</h3>
 
-                    <img
-                        <img src="CANTO.jpg">
-                        alt="${mito.Titulo || ''}"
+                 <img 
+                        src="${mito.imagen_url || ''}" 
+                        alt="${mito.Titulo || ''}" 
                         class="imagen-mito"
                     >
 
