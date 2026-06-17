@@ -70,6 +70,12 @@ async function cargarMitos() {
             "<p>Error al cargar los mitos.</p>";
     }
 }
+// Cambia esto temporalmente:
+const q = query(
+    collection(db, "mitos")
+    // where("fecha_publicacion", "<=", new Date()), // Comenta esta línea
+    // orderBy("fecha_publicacion", "desc")          // Comenta esta también
+);
 
 // Ejecutar
 cargarMitos(); 
