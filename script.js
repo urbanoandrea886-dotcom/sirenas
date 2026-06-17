@@ -1,11 +1,3 @@
-let metrosProfundidad = 0;
-
-window.onload = function(){
-
-    alert("🌊 Bienvenido a Mitología Marina 🌊");
-
-}
-
 const boton = document.getElementById("modoBtn");
 
 boton.addEventListener("click", () => {
