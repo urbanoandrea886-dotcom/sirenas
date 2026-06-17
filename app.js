@@ -5,7 +5,6 @@ import {
     getDocs
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-// Configuración Firebase (Mantenida según solicitaste)
 const firebaseConfig = {
     apiKey: "AIzaSyBsGZM5R-xKeqrr6ELRhQAVJ2cdmAn3UdA",
     authDomain: "mitologia-marina.firebaseapp.com",
@@ -15,11 +14,9 @@ const firebaseConfig = {
     appId: "1:11763136382:web:0f7d1464363d9c16d5652f"
 };
 
-// Inicializar Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Cargar mitos
 async function cargarMitos() {
     const contenedor = document.getElementById("mitos-container");
     if (!contenedor) return;
@@ -33,11 +30,9 @@ async function cargarMitos() {
         querySnapshot.forEach((doc) => {
             const mito = doc.data();
 
-            // Creamos la tarjeta
             const div = document.createElement("div");
             div.className = "card-mito";
 
-            // Si la URL existe, la usamos, si no, dejamos el src vacío o manejamos el error
             const imgHtml = mito.imagen_url 
                 ? `<img src="${mito.imagen_url}" alt="${mito.Titulo || 'Mito'}" class="imagen-mito" onerror="this.style.display='none'">` 
                 : `<p><em>Sin imagen</em></p>`;
