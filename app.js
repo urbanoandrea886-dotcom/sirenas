@@ -1,75 +1,48 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import {
-    getFirestore,
-    collection,
-    getDocs
+import { 
+    getFirestore, 
+    collection, 
+    getDocs, 
+    query, 
+    where, 
+    orderBy 
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-// Configuración Firebase
-const firebaseConfig = {
-    apiKey: "AIzaSyBsGZM5R-xKeqrr6ELRhQAVJ2cdmAn3UdA",
-    authDomain: "mitologia-marina.firebaseapp.com",
-    projectId: "mitologia-marina",
-    storageBucket: "mitologia-marina.firebasestorage.app",
-    messagingSenderId: "11763136382",
-    appId: "1:11763136382:web:0f7d1464363d9c16d5652f"
-};
-
-// Inicializar Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-// Cargar mitos
 async function cargarMitos() {
-
     const contenedor = document.getElementById("mitos-container");
-
     if (!contenedor) return;
 
     try {
-
         contenedor.innerHTML = "<p>Cargando mitos...</p>";
 
-        const querySnapshot = await getDocs(
-            collection(db, "mitos")
+        // 1. Creamos la consulta:
+        // Buscamos documentos donde fecha_publicacion sea menor o igual a AHORA
+        const q = query(
+            collection(db, "mitos"), 
+            where("fecha_publicacion", "<=", new Date()), 
+            orderBy("fecha_publicacion", "desc") // Los más nuevos primero
         );
 
+        const querySnapshot = await getDocs(q);
         contenedor.innerHTML = "";
 
         querySnapshot.forEach((doc) => {
-
             const mito = doc.data();
-
+            
+            // Nota: Corregí el nombre de tu campo a "contenido" para que coincida con tu BD
             contenedor.innerHTML += `
                 <div class="card-mito">
-
-                    <h3>${mito.Titulo || "Sin título"}</h3>
-
-                     <img 
-                     src="${mito.imagen_url || ''}" 
-                     alt="${mito.Titulo || ''}" 
-                     class="imagen-mito"
-                    >
-
-                    <p>${mito.cuerpo_texto || ""}</p>
-
+                    <h3>${mito.titulo || "Sin título"}</h3>
+                    <img src="${mito.imagen_url || ''}" alt="${mito.titulo || ''}" class="imagen-mito">
+                    <p>${mito.contenido || ""}</p>
                     <div class="info-mito">
                         <p><strong>Categoría:</strong> ${mito.tema_nombre || "General"}</p>
                         <p><strong>Autor:</strong> ${mito.usuario_nombre || "Anónimo"}</p>
                     </div>
-
                 </div>
             `;
         });
-
     } catch (error) {
-
         console.error("Error Firebase:", error);
-
-        contenedor.innerHTML =
-            "<p>Error al cargar los mitos.</p>";
+        contenedor.innerHTML = "<p>Error al cargar los mitos.</p>";
     }
 }
-
-// Ejecutar
-cargarMitos();
