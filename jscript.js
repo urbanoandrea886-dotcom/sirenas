@@ -1,6 +1,5 @@
 let puntos = 0;
 
-// actualizar puntos en pantalla
 function actualizar(){
     document.getElementById("puntos").innerHTML = puntos;
 }
